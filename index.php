@@ -19,6 +19,11 @@
 	});
 
 
+	$hotel = new Hotel('Hilton', '10 route de la Gare', '67000', 'Strasbourg');
+
+	echo $hotel->afficherInfoHotel();
+
+
 	?>
 
 </body>
