@@ -21,6 +21,8 @@
 	$client1 = new Client('John', 'Doe');
 	// HOTEL
 	$hotel = new Hotel('Hilton', '10 route de la Gare', '67000', 'Strasbourg');
+	//CHAMBRE
+	
 
 	echo $hotel->afficherInfoHotel();
 

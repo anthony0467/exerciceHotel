@@ -2,17 +2,15 @@
 class Chambre
 {
 	private int $totalChambre;
-	private int $chambreReserve;
-	private int $chambreDispo;
+	private bool $etatChambre;
 	private float $price;
 	private bool $wifi;
 
-	public function __construct(int $totalChambre, int $chambreReserve, int $chambreDispo)
+	public function __construct(int $totalChambre)
 	{
 		$this->totalChambre = $totalChambre;
-		$this->chambreReserve = $chambreReserve;
-		$this->chambreDispo = $chambreDispo;
-		$this->price = 120;
+		$this->etatChambre = true;
+		$this->price;
 		$this->wifi = false;
 	}
 
@@ -23,14 +21,9 @@ class Chambre
 		$this->totalChambre = $totalChambre;
 	}
 
-	public function set_chambreReserve(int $chambreReserve)
+	public function set_etatChambre(int $etatChambre)
 	{
-		$this->totalChambre = $chambreReserve;
-	}
-
-	public function set_chambreDispo(int $chambreDispo)
-	{
-		$this->chambreDispo = $chambreDispo;
+		$this->etatChambre = $etatChambre;
 	}
 
 	public function set_price(float $price)
@@ -50,14 +43,9 @@ class Chambre
 		return $this->totalChambre;
 	}
 
-	public function get_chambreReserve()
+	public function get_etatChambre()
 	{
-		return $this->chambreReserve;
-	}
-
-	public function get_chambreDispo()
-	{
-		return $this->chambreDispo;
+		return $this->etatChambre;
 	}
 
 	public function get_price()
@@ -73,5 +61,18 @@ class Chambre
 	public function __toString()
 	{
 		return $this->get_totalChambre();
+	}
+
+
+
+
+	public function afficherPrix()
+	{
+		if ($this->wifi = false) {
+			$result = $this->price = .120 . ' €';
+		} else {
+			$result = $this->price = .300 . ' €';
+		}
+		return $result;
 	}
 }
