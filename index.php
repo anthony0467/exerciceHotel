@@ -17,8 +17,9 @@
 	spl_autoload_register(function ($class_name) {
 		require_once $class_name . '.php';
 	});
-
-
+	//CLIENT
+	$client1 = new Client('John', 'Doe');
+	// HOTEL
 	$hotel = new Hotel('Hilton', '10 route de la Gare', '67000', 'Strasbourg');
 
 	echo $hotel->afficherInfoHotel();
