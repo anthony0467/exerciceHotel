@@ -5,11 +5,19 @@ class Client
 
 	private string $firstName;
 	private string $lastName;
+	private array $reservations;
 
 	public function __construct(string $firstName, string $lastName)
 	{
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
+		$this->reservations = [];
+	}
+
+
+	public function addReservation($reservation)
+	{
+		$this->reservations[] = $reservation;
 	}
 
 	// SET
@@ -41,8 +49,14 @@ class Client
 		return $this->get_firstName() . ' ' . $this->get_lastName();
 	}
 
-	public function afficherClient()
+
+
+	public function afficherResaClient()
 	{
-		return $this;
+		$result = '<h3>Réservation de ' . $this . '</h3><ul>';
+		foreach ($this->reservations as $reservation) {
+			$result .= '<li>Hotel ' . $reservation->get_chambre()->get_hotel() . '/ Chambre: ' . $reservation->get_chambre() . '(' . $reservation->get_chambre()->get_nbLit() . 'lits-' . $reservation->get_chambre()->get_price() . '</li>';
+		}
+		return $result . '</ul>';
 	}
 }

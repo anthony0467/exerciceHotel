@@ -1,24 +1,36 @@
 <?php
 class Chambre
 {
-	private int $totalChambre;
+	private string $numeroChambre;
 	private bool $etatChambre;
 	private float $price;
+	private int $nbLit;
 	private bool $wifi;
+	private Hotel $hotel;
+	private array $reservations;
 
-	public function __construct(int $totalChambre)
+	public function __construct(Hotel $hotel, string $numeroChambre, float $price, bool $wifi)
 	{
-		$this->totalChambre = $totalChambre;
+		$this->numeroChambre = $numeroChambre;
 		$this->etatChambre = true;
-		$this->price;
-		$this->wifi = false;
+		$this->nbLit = 2;
+		$this->wifi = $wifi;
+		$this->price = $price;
+		$this->hotel = $hotel;
+		$this->reservations = [];
+		$this->hotel->addChambre($this);
+	}
+
+	public function addReservation($reservation)
+	{
+		$this->reservations[] = $reservation;
 	}
 
 	//SET
 
-	public function set_totalChambre(int $totalChambre)
+	public function set_numeroChambre(string $numeroChambre)
 	{
-		$this->totalChambre = $totalChambre;
+		$this->numeroChambre = $numeroChambre;
 	}
 
 	public function set_etatChambre(int $etatChambre)
@@ -36,11 +48,21 @@ class Chambre
 		$this->wifi = $wifi;
 	}
 
+	public function set_hotel(Hotel $hotel)
+	{
+		$this->hotel = $hotel;
+	}
+
+	public function set_nbLit(int $nbLit)
+	{
+		$this->nbLit = $nbLit;
+	}
+
 	//GET
 
-	public function get_totalChambre()
+	public function get_numeroChambre()
 	{
-		return $this->totalChambre;
+		return $this->numeroChambre;
 	}
 
 	public function get_etatChambre()
@@ -58,21 +80,38 @@ class Chambre
 		return $this->wifi;
 	}
 
-	public function __toString()
+	public function get_hotel()
 	{
-		return $this->get_totalChambre();
+		return $this->hotel;
 	}
 
-
-
-
-	public function afficherPrix()
+	public function get_nbLit()
 	{
-		if ($this->wifi = false) {
-			$result = $this->price = .120 . ' €';
+		return $this->nbLit;
+	}
+
+	//STRING
+
+	public function __toString()
+	{
+		return $this->get_numeroChambre();
+	}
+
+	public function wifi()
+	{
+		if ($this->wifi == false) {
+			return 'Wifi: non';
 		} else {
-			$result = $this->price = .300 . ' €';
+			return 'Wifi: oui';
 		}
-		return $result;
+	}
+
+	public function afficherResaChambre()
+	{
+		$result = '<h3>Réservation de la chambre: ' . $this . '</h3><ul>';
+		foreach ($this->reservations as $reservation) {
+			$result .= '<li> ' . $reservation->get_client() . '</li>';
+		}
+		return $result . '</ul>';
 	}
 }
