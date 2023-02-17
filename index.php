@@ -28,9 +28,10 @@
 	$chambre2 = new Chambre($hotel, '2', 300, true);
 	//RESERVATION
 	$resa1 = new Reservation($client1, $chambre1);
+	$resa1_2 = new Reservation($client1, $chambre2);
 	$resa2 = new Reservation($client2, $chambre1);
 
-	//echo $hotel->afficherInfoHotel();
+	echo $hotel->afficherInfoHotel();
 	echo $hotel->afficherChambresHotel();
 	echo $hotelParis->afficherChambresHotel();
 	echo $client1->afficherResaClient();

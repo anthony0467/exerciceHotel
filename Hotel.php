@@ -75,7 +75,7 @@ class Hotel
 	public function afficherInfoHotel()
 	{
 		echo '<h2>' . $this . '</h2>';
-		$result = '<ul><li>' . $this->adress . ' ' . $this->codePostal . ' ' . $this->ville . '</li></ul>';
+		$result = '<ul><li>' . $this->adress . ' ' . $this->codePostal . ' ' . $this->ville . '</li><li>Nombre de chambres: '.count($this->chambres).'</li></ul>' ;
 		return $result;
 	}
 
