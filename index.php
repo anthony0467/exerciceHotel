@@ -25,12 +25,23 @@
 	$hotel = new Hotel('Hilton **** Strasbourg', '10 route de la Gare', '67000', 'Strasbourg');
 	$hotelParis = new Hotel('Régent **** Paris', '10 route de gaule', '75000', 'Paris');
 	//CHAMBRE
-	$chambre1 = new Chambre($hotel, '1', 120, false);
-	$chambre2 = new Chambre($hotel, '2', 300, true);
+
+	foreach(range(1,30) as $num){
+		if($num <= 15){
+			${'chambreH'.$num} = new Chambre($hotel, $num,120,false);
+			${'chambreR'.$num} = new Chambre($hotelParis, $num,120,false);
+		}else{
+			${'chambreH'.$num} = new Chambre($hotel, $num,300,true);
+			${'chambreR'.$num} = new Chambre($hotelParis, $num,300,true);
+		}
+	}
+
+
+
 	//RESERVATION
-	$resa1 = new Reservation($client1, $chambre1, '2022-10-05', '2022-10-10');
-	$resa1_2 = new Reservation($client1, $chambre2,'2022-12-05', '2022-12-08');
-	$resa2 = new Reservation($client2, $chambre1,'2022-07-12', '2022-07-09');
+	$resa1 = new Reservation($client1, $chambreH1, '2022-10-05', '2022-10-10');
+	$resa1_2 = new Reservation($client1, $chambreH25,'2022-12-05', '2022-12-08');
+	$resa2 = new Reservation($client2, $chambreH1,'2022-07-12', '2022-07-09');
 
 	var_dump($resa1->dureeSejour());
 
@@ -38,7 +49,7 @@
 	echo $hotel->afficherChambresHotel();
 	echo $hotelParis->afficherChambresHotel();
 	echo $client1->afficherResaClient();
-	echo $chambre1->afficherResaChambre();
+	echo $chambreH1->afficherResaChambre();
 
 
 	?>
