@@ -6,18 +6,26 @@ class Reservation
 	private Chambre $chambre;
 	private DateTime $dateDebut;
 	private DateTime $dateFin;
+	private Hotel $hotel;
 
-	public function __construct(Client $client, Chambre $chambre, string $dateDebut, string $dateFin)
+	public function __construct(Client $client, Chambre $chambre,Hotel $hotel, string $dateDebut, string $dateFin)
 	{
+		$this->hotel = $hotel;
 		$this->client = $client;
 		$this->chambre = $chambre;
 		$this->dateDebut = new DateTime($dateDebut);
 		$this->dateFin = new DateTime($dateFin);
 		$this->client->addReservation($this);
 		$this->chambre->addReservation($this);
+		$this->hotel->addReservation($this);
 	}
 
 	//SET
+
+	public function set_hotel(Hotel $hotel)
+	{
+		$this->hotel = $hotel;
+	}
 
 	public function set_client(Client $client)
 	{
@@ -40,6 +48,11 @@ class Reservation
 	}
 
 	//GET
+
+	public function get_hotel()
+	{
+		return $this->hotel;
+	}
 
 	public function get_client()
 	{

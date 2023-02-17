@@ -7,6 +7,7 @@ class Hotel
 	private string $codePostal;
 	private string $ville;
 	private array $chambres;
+	private array $reservations;
 
 	public function __construct(string $nameHotel, string $adress, string $codePostal, string $ville)
 	{
@@ -15,12 +16,18 @@ class Hotel
 		$this->codePostal = $codePostal;
 		$this->ville = $ville;
 		$this->chambres = [];
+		$this->reservations = [];
 	}
 
 
 	public function addChambre($chambre)
 	{
 		$this->chambres[] = $chambre;
+	}
+
+	public function addReservation($reservation)
+	{
+		$this->reservations[] = $reservation;
 	}
 
 	//SET
@@ -84,8 +91,17 @@ class Hotel
 		$result = '<h3>Status des chambres de ' . $this . '</h3><ul>';
 
 		foreach ($this->chambres as $chambre) {
-			$result .= '<li> Chambre ' . $chambre . ' prix: ' . $chambre->get_price() . '€ ' . $chambre->wifi() . ' </li>';
+			$result .= '<li> Chambre ' . $chambre . ' prix: ' . $chambre->get_price() . '€ ' . $chambre->wifi() .  ' </li>';
 		}
 		return $result . '</ul>';
+	}
+
+	public function afficherReservationHotel(){
+		$result = "<h3>Réservation de l'hotel " .$this."</h3> <ul>";
+
+		foreach($this->reservations as $reservation){
+			$result .= "<li>" .$reservation->get_client(). " - Chambre " .$reservation->get_chambre(). " - " .$reservation. "</li>";
+		}
+		return $result;
 	}
 }

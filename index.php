@@ -39,13 +39,14 @@
 
 
 	//RESERVATION
-	$resa1 = new Reservation($client1, $chambreH1, '2022-10-05', '2022-10-10');
-	$resa1_2 = new Reservation($client1, $chambreH25,'2022-12-05', '2022-12-08');
-	$resa2 = new Reservation($client2, $chambreH1,'2022-07-12', '2022-07-09');
+	$resa1 = new Reservation($client1, $chambreH1, $hotel, '2022-10-05', '2022-10-10');
+	$resa1_2 = new Reservation($client1, $chambreH25, $hotel,'2022-12-05', '2022-12-08');
+	$resa2 = new Reservation($client2, $chambreH1, $hotel,'2022-07-12', '2022-07-09');
 
 	var_dump($resa1->dureeSejour());
 
 	echo $hotel->afficherInfoHotel();
+	echo $hotel->afficherReservationHotel();
 	echo $hotel->afficherChambresHotel();
 	echo $hotelParis->afficherChambresHotel();
 	echo $client1->afficherResaClient();
