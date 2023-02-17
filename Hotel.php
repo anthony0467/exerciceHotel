@@ -91,7 +91,7 @@ class Hotel
 		$result = '<h3>Status des chambres de ' . $this . '</h3><ul>';
 
 		foreach ($this->chambres as $chambre) {
-			$result .= '<li> Chambre ' . $chambre . ' prix: ' . $chambre->get_price() . '€ ' . $chambre->wifi() .  ' </li>';
+			$result .= '<li> Chambre ' . $chambre . ' prix: ' . $chambre->get_price() . '€ ' . $chambre->wifi() . ' /' .$chambre->etat(). ' </li>';
 		}
 		return $result . '</ul>';
 	}
@@ -99,9 +99,14 @@ class Hotel
 	public function afficherReservationHotel(){
 		$result = "<h3>Réservation de l'hotel " .$this."</h3> <ul>";
 
-		foreach($this->reservations as $reservation){
-			$result .= "<li>" .$reservation->get_client(). " - Chambre " .$reservation->get_chambre(). " - " .$reservation. "</li>";
+		if(count($this->reservations) == 0){
+			$result .='Pas de reservation';
+		}else{
+			foreach($this->reservations as $reservation){
+				$result .= "<li>" .$reservation->get_client(). " - Chambre " .$reservation->get_chambre(). " - " .$reservation. "</li>";
+			}
 		}
-		return $result;
+
+		return $result. '</ul>';
 	}
 }

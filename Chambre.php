@@ -9,7 +9,7 @@ class Chambre
 	private Hotel $hotel;
 	private array $reservations;
 
-	public function __construct(Hotel $hotel, string $numeroChambre, float $price, bool $wifi)
+	public function __construct(Hotel $hotel, string $numeroChambre, float $price, bool $wifi = true)
 	{
 		$this->numeroChambre = $numeroChambre;
 		$this->etatChambre = true;
@@ -103,6 +103,15 @@ class Chambre
 			return 'Wifi: non';
 		} else {
 			return 'Wifi: oui';
+		}
+	}
+
+	public function etat()
+	{
+		if ($this->etatChambre == false) {
+			return 'Indisponible';
+		} else {
+			return 'Disponible';
 		}
 	}
 
