@@ -51,7 +51,15 @@ class Hotel
 		$this->ville = $ville;
 	}
 
-
+	public function nbChambreDispo(){
+		$chambreDispo = 0;
+		foreach($this->chambres as $chambre){
+			if($chambre->get_etatChambre() == true){
+				$chambreDispo++;
+			}
+		}
+		return $chambreDispo;
+	}
 
 	//GET
 	public function get_nameHotel()
@@ -79,10 +87,11 @@ class Hotel
 		return $this->nameHotel;
 	}
 
+
 	public function afficherInfoHotel()
 	{
 		echo '<h2>' . $this . '</h2>';
-		$result = '<ul><li>' . $this->adress . ' ' . $this->codePostal . ' ' . $this->ville . '</li><li>Nombre de chambres: '.count($this->chambres).'</li></ul>' ;
+		$result = '<ul><li>' . $this->adress . ' ' . $this->codePostal . ' ' . $this->ville . '</li><li>Nombre de chambres: '.count($this->chambres).'</li><li>Nombre de chambres disponible: ' .$this->nbChambreDispo().  '</li><li>Nombre de chambres indisponible: ' .count($this->chambres) - $this->nbChambreDispo(). '</li></ul>' ;
 		return $result;
 	}
 

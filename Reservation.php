@@ -7,19 +7,20 @@ class Reservation
 	private DateTime $dateDebut;
 	private DateTime $dateFin;
 	private Hotel $hotel;
-	private bool $etatChambre;
 
-	public function __construct(Client $client, Chambre $chambre,Hotel $hotel, string $dateDebut, string $dateFin)
+	public function __construct(Client $client, Chambre $chambre,Hotel $hotel, string $dateDebut, string $dateFin, $reserverChambre = true)
 	{
 		$this->hotel = $hotel;
 		$this->client = $client;
 		$this->chambre = $chambre;
-		$this->etatChambre = true;
 		$this->dateDebut = new DateTime($dateDebut);
 		$this->dateFin = new DateTime($dateFin);
 		$this->client->addReservation($this);
 		$this->chambre->addReservation($this);
 		$this->hotel->addReservation($this);
+		if ($reserverChambre) {
+			$chambre->reserver(); // si  True alors method reserver (dans class chambre) etatChambre = false
+		  }
 	}
 
 	//SET
@@ -49,11 +50,6 @@ class Reservation
 		$this->dateFin = $dateFin;
 	}
 
-	public function set_etatChambre(int $etatChambre)
-	{
-		$this->etatChambre = $etatChambre;
-	}
-
 	//GET
 
 	public function get_hotel()
@@ -79,20 +75,6 @@ class Reservation
 	public function get_dateFin()
 	{
 		return $this->dateFin;
-	}
-
-	public function get_etatChambre()
-	{
-		return $this->etatChambre;
-	}
-
-	public function etat()
-	{
-		if ($this->etatChambre == false) {
-			return 'Indisponible';
-		} else {
-			return 'Disponible';
-		}
 	}
 
 	public function afficherDateDebut(){

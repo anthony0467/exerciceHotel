@@ -26,6 +26,15 @@ class Chambre
 		$this->reservations[] = $reservation;
 	}
 
+	public function reserver() {
+		$this->etatChambre = false;
+	  }
+
+	/*public function get_reserver() {
+		return $this->etatChambre;
+	  }*/
+
+
 	//SET
 
 	public function set_numeroChambre(string $numeroChambre)
