@@ -94,7 +94,7 @@ class Chambre
 
 	public function __toString()
 	{
-		return $this->get_numeroChambre();
+		return $this->numeroChambre;
 	}
 
 	public function wifi()
@@ -108,9 +108,9 @@ class Chambre
 
 	public function afficherResaChambre()
 	{
-		$result = '<h3>Réservation de la chambre: ' . $this . '</h3><ul>';
+		$result = '<h3>Réservation à : ' . $this->get_hotel() . '</h3><ul>';
 		foreach ($this->reservations as $reservation) {
-			$result .= '<li> ' . $reservation->get_client() . '</li>';
+			$result .= '<li> ' .$reservation->get_client(). ' pour la chambre ' .$this. ' du ' .$reservation. '</li>';
 		}
 		return $result . '</ul>';
 	}

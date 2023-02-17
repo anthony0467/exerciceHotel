@@ -20,6 +20,7 @@
 	//CLIENT
 	$client1 = new Client('John', 'Doe');
 	$client2 = new Client('Jane', 'Doe');
+	$client3 = new Client('Paul', 'Rudd');
 	// HOTEL
 	$hotel = new Hotel('Hilton **** Strasbourg', '10 route de la Gare', '67000', 'Strasbourg');
 	$hotelParis = new Hotel('Régent **** Paris', '10 route de gaule', '75000', 'Paris');
@@ -31,7 +32,7 @@
 	$resa1_2 = new Reservation($client1, $chambre2,'2022-12-05', '2022-12-08');
 	$resa2 = new Reservation($client2, $chambre1,'2022-07-12', '2022-07-09');
 
-	//var_dump($resa1->afficherDate());
+	var_dump($resa1->dureeSejour());
 
 	echo $hotel->afficherInfoHotel();
 	echo $hotel->afficherChambresHotel();

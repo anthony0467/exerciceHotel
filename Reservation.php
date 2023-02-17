@@ -71,6 +71,11 @@ class Reservation
 		return $date_String_Fin;
 	}
 
+	public function dureeSejour(){
+		$diff = date_diff($this->dateDebut, $this->dateFin);
+		return $diff->format('%d');
+	}
+
 	public function __toString(){
 		return $this->afficherDateDebut(). ' au ' .$this->afficherDateFin();
 	}
