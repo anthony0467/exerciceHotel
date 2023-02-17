@@ -39,7 +39,7 @@
 
 
 	//RESERVATION
-	$resa1 = new Reservation($client1, $chambreH1, $hotel, '2023-04-15', '2022-05-25');
+	$resa1 = new Reservation($client1, $chambreH1, $hotel, '2022-04-15', '2023-05-25');
 	$resa1_2 = new Reservation($client1, $chambreH25, $hotel,'2022-12-05', '2022-12-08');
 	$resa2 = new Reservation($client2, $chambreH14, $hotel,'2022-07-09', '2022-07-12');
 	$resa3 = new Reservation($client3, $chambreH1, $hotel,'2022-011-09', '2022-11-17');
