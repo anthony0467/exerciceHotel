@@ -53,10 +53,13 @@ class Client
 
 	public function afficherResaClient()
 	{
+		$total = 0;
 		$result = '<h3>Réservation de ' . $this . '</h3><ul>';
 		foreach ($this->reservations as $reservation) {
-			$result .= '<li>Hotel ' . $reservation->get_chambre()->get_hotel() . '/ Chambre: ' . $reservation->get_chambre() . '(' . $reservation->get_chambre()->get_nbLit() . 'lits-' . $reservation->get_chambre()->get_price(). ' € ' .$reservation->get_chambre()->wifi().')du ' .$reservation. ' Total: ' .$reservation->dureeSejour() * $reservation->get_chambre()->get_price(). ' €</li>';
+			$prixSejour = $reservation->dureeSejour() * $reservation->get_chambre()->get_price();
+			$total += $prixSejour;
+			$result .= '<li>Hotel ' . $reservation->get_chambre()->get_hotel() . '/ Chambre: ' . $reservation->get_chambre() . '(' . $reservation->get_chambre()->get_nbLit() . 'lits-' . $reservation->get_chambre()->get_price(). ' € ' .$reservation->get_chambre()->wifi().')du ' .$reservation. ' Prix: ' .$prixSejour. ' €</li>';
 		}
-		return $result. '</ul>';
+		return $result. 'Total: '.$total. ' € </ul>';
 	}
 }
