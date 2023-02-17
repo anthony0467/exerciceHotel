@@ -27,9 +27,11 @@
 	$chambre1 = new Chambre($hotel, '1', 120, false);
 	$chambre2 = new Chambre($hotel, '2', 300, true);
 	//RESERVATION
-	$resa1 = new Reservation($client1, $chambre1);
-	$resa1_2 = new Reservation($client1, $chambre2);
-	$resa2 = new Reservation($client2, $chambre1);
+	$resa1 = new Reservation($client1, $chambre1, '2022-10-05', '2022-10-10');
+	$resa1_2 = new Reservation($client1, $chambre2,'2022-12-05', '2022-12-08');
+	$resa2 = new Reservation($client2, $chambre1,'2022-07-12', '2022-07-09');
+
+	//var_dump($resa1->afficherDate());
 
 	echo $hotel->afficherInfoHotel();
 	echo $hotel->afficherChambresHotel();

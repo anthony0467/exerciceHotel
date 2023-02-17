@@ -4,13 +4,15 @@ class Reservation
 {
 	private Client $client;
 	private Chambre $chambre;
-	private DateTime $date;
+	private DateTime $dateDebut;
+	private DateTime $dateFin;
 
-	public function __construct(Client $client, Chambre $chambre)
+	public function __construct(Client $client, Chambre $chambre, string $dateDebut, string $dateFin)
 	{
 		$this->client = $client;
 		$this->chambre = $chambre;
-		//$this->date = $date;
+		$this->dateDebut = new DateTime($dateDebut);
+		$this->dateFin = new DateTime($dateFin);
 		$this->client->addReservation($this);
 		$this->chambre->addReservation($this);
 	}
@@ -27,9 +29,14 @@ class Reservation
 		$this->chambre = $chambre;
 	}
 
-	public function set_date(DateTime $date)
+	public function set_dateDebut($dateDebut)
 	{
-		$this->date = $date;
+		$this->dateDebut = $dateDebut;
+	}
+
+	public function set_dateFin($dateFin)
+	{
+		$this->dateFin = $dateFin;
 	}
 
 	//GET
@@ -44,8 +51,30 @@ class Reservation
 		return $this->chambre;
 	}
 
-	public function get_date()
+	public function get_dateDebut()
 	{
-		return $this->date;
+		return $this->dateDebut;
 	}
+
+	public function get_dateFin()
+	{
+		return $this->dateFin;
+	}
+
+	public function afficherDateDebut(){
+		$date_String_debut = $this->dateDebut->format('d-m-Y');
+		return $date_String_debut;
+	}
+
+	public function afficherDateFin(){
+		$date_String_Fin = $this->dateFin->format('d-m-Y');
+		return $date_String_Fin;
+	}
+
+	public function __toString(){
+		return $this->afficherDateDebut(). ' au ' .$this->afficherDateFin();
+	}
+
+
+
 }
